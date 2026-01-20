@@ -1,0 +1,16 @@
+---
+- name: Deploy Angry Birds Game
+  hosts: localhost
+  connection: local
+  become: yes
+  tasks:
+    - name: Ensure the game containers are running
+      community.docker.docker_compose_v2:
+        project_src: .  
+        state: present
+        build: always   
+      register: output
+
+    - name: Show deployment status
+      debug:
+        msg: "Angry Birds is now live at http://localhost:3000"
