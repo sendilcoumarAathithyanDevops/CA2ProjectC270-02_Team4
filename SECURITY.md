@@ -1,13 +1,16 @@
 # Security Considerations
 
 ## Overview
+
 This document outlines the security measures implemented in the Angry Birds game application.
 
 ## Security Implementation
 
 ### 1. **Path Traversal Prevention**
+
 - The server validates file paths to prevent directory traversal attacks
 - Implementation in `server.js`:
+
   ```javascript
   if (!filePath.startsWith(baseDir)) {
     res.statusCode = 403;
@@ -15,39 +18,48 @@ This document outlines the security measures implemented in the Angry Birds game
     return;
   }
   ```
+
 - All requested files must be within the application's base directory
 
 ### 2. **Input Validation**
+
 - URL decoding is properly handled before file path construction
 - Invalid or malformed URLs are rejected with appropriate HTTP status codes (404, 403, 500)
 
 ### 3. **HTTP Security Headers**
+
 Recommended headers to add to responses:
+
 - `X-Content-Type-Options: nosniff` - Prevent MIME type sniffing
 - `X-Frame-Options: DENY` - Prevent clickjacking
 - `Content-Security-Policy: default-src 'self'` - Restrict resource loading
 
 ### 4. **Dependency Management**
+
 - Regular security audits via `npm audit`
 - CI/CD pipeline includes automatic vulnerability scanning with Trivy
 - Dependencies kept up-to-date with minimal versions for Node.js >= 12
 
 ### 5. **Error Handling**
+
 - Server errors are handled gracefully without exposing sensitive information
 - Generic error messages returned to clients (e.g., "Not found", "Server error")
 - No stack traces or internal paths exposed in error responses
 
 ### 6. **File Type Validation**
+
 - MIME types are explicitly defined for supported file types
 - Unknown file types default to `application/octet-stream`
 - Binary files are safely served using streams to prevent memory exhaustion
 
 ### 7. **Secrets Management**
+
 - No hardcoded credentials or API keys in the codebase
 - Environment variables (e.g., `PORT`) used for configuration
 - Secrets scanning enabled in CI/CD pipeline via GitHub Actions
 
 ### 8. **Code Quality & Security Scanning**
+
 - ESLint configuration enforces code quality standards
 - GitHub Actions automatically scans for:
   - Dependency vulnerabilities (npm audit)
@@ -55,6 +67,7 @@ Recommended headers to add to responses:
   - Code quality issues (SonarCloud - when configured)
 
 ### 9. **Access Control**
+
 - Server runs with minimal required permissions
 - No file write operations exposed through the web server
 - Only static assets are served
@@ -62,6 +75,7 @@ Recommended headers to add to responses:
 ## Vulnerability Reporting
 
 If you discover a security vulnerability, please email the team lead privately instead of posting issues publicly. Include:
+
 - Description of the vulnerability
 - Steps to reproduce
 - Potential impact
