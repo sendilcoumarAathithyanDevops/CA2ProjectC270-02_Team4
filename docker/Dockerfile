@@ -5,13 +5,13 @@ FROM node:18-alpine
 WORKDIR /app
 
 # Copy package.json and package-lock.json (if exists)
-COPY package*.json ./
+COPY ../package*.json ./
 
 # Install dependencies
 RUN npm install
 
 # Copy the rest of the application files
-COPY . .
+COPY ../ .
 
 # Expose port (default 3000, can be overridden)
 EXPOSE 3000
@@ -19,5 +19,5 @@ EXPOSE 3000
 # Set environment variable for production
 ENV NODE_ENV=production
 
-# Start the application
-CMD ["npm", "start"]
+# Start the application (server.js is now in src/server/)
+CMD ["node", "src/server/server.js"]

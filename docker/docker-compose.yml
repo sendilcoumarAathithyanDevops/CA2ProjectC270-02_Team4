@@ -1,6 +1,8 @@
 services:
   angrybirds:
-    build: .
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
     container_name: angrybirds-game
     ports:
       - "3000:3000"

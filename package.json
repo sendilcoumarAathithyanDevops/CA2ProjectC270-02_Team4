@@ -2,9 +2,9 @@
   "name": "angrybirds-local",
   "version": "1.0.0",
   "description": "Serve Angry Birds game locally",
-  "main": "server.js",
+  "main": "src/server/server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node src/server/server.js",
     "test": "jest --coverage",
     "test:watch": "jest --watch",
     "lint": "eslint .",
@@ -25,10 +25,10 @@
     "coverageDirectory": "coverage",
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "/sprites/"
+      "/src/client/assets/sprites/"
     ],
     "testMatch": [
-      "**/__tests__/**/*.js",
+      "**/tests/**/*.js",
       "**/?(*.)+(spec|test).js"
     ]
   }
