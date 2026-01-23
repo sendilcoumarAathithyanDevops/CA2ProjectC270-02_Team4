@@ -59,12 +59,13 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
+        file: ./docker/Dockerfile
         push: false
         tags: angry-birds:${{ github.sha }}
     
     - name: Run server health check
       run: |
-        docker build -t angry-birds:test .
+        docker build -f docker/Dockerfile -t angry-birds:test .
         docker run -d --name test-server -p 3000:3000 angry-birds:test
         sleep 3
         curl -f http://localhost:3000/ || exit 1
