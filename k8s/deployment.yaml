@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: angrybirds-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: angrybirds
+  template:
+    metadata:
+      labels:
+        app: angrybirds
+    spec:
+      containers:
+        - name: angrybirds
+          image: wongxiaoqian/angry-birds:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
