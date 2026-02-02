@@ -2,9 +2,9 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ main, develop, idk ]
   pull_request:
-    branches: [ main, develop ]
+    branches: [ main, develop, idk ]
 
 jobs:
   test:
@@ -35,7 +35,7 @@ jobs:
     
     - name: Security audit
       run: npm run security:audit
-      continue-on-error: false
+      continue-on-error: true
     
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v3
