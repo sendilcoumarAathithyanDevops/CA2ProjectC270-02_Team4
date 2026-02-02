@@ -1,10 +1,6 @@
+const server = require('../src/server/server');
+
 describe('Server Tests', () => {
-  let server;
-
-  beforeAll(() => {
-    server = require('../src/server/server');
-  });
-
   afterAll((done) => {
     if (server && server.close) {
       server.close(done);
