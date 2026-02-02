@@ -14,7 +14,7 @@ const mime = {
   '.json': 'application/json',
   '.wav': 'audio/wav',
   '.mp3': 'audio/mpeg',
-  '.ico': 'image/x-icon'
+  '.ico': 'image/x-icon',
 };
 
 const port = process.env.PORT || 3000;
@@ -23,10 +23,9 @@ const baseDir = path.join(__dirname, '..', '..');
 
 const server = http.createServer((req, res) => {
   try {
-    let reqPath = decodeURIComponent(req.url.split('?')[0]);
+    const reqPath = decodeURIComponent(req.url.split('?')[0]);
     // Serve index.html from /public directory for root requests
-    if (reqPath === '/') reqPath = '/public/index.html';
-    const filePath = path.join(baseDir, reqPath);
+    const filePath = reqPath === '/' ? path.join(baseDir, 'public', 'index.html') : path.join(baseDir, reqPath);
 
     if (!filePath.startsWith(baseDir)) {
       res.statusCode = 403;
@@ -60,3 +59,5 @@ const server = http.createServer((req, res) => {
 server.listen(port, () => {
   console.log(`Server running at http://localhost:${port}/`);
 });
+
+module.exports = server;

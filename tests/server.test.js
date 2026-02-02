@@ -1,8 +1,16 @@
+const server = require('../src/server/server');
+
 describe('Server Tests', () => {
+  afterAll((done) => {
+    if (server && server.close) {
+      server.close(done);
+    } else {
+      done();
+    }
+  });
+
   test('Server module should be importable', () => {
-    expect(() => {
-      require('../src/server/server.js');
-    }).not.toThrow();
+    expect(server).toBeDefined();
   });
 
   test('MIME types should be defined for common file types', () => {
@@ -11,9 +19,9 @@ describe('Server Tests', () => {
       '.js': 'application/javascript',
       '.css': 'text/css',
       '.png': 'image/png',
-      '.json': 'application/json'
+      '.json': 'application/json',
     };
-    
+
     Object.entries(mimeTypes).forEach(([ext, type]) => {
       expect(type).toBeDefined();
       expect(typeof type).toBe('string');
