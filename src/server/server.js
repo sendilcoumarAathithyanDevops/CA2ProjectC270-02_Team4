@@ -25,7 +25,7 @@ const server = http.createServer((req, res) => {
   try {
     const reqPath = decodeURIComponent(req.url.split('?')[0]);
     // Serve index.html from /public directory for root requests
-    const filePath = reqPath === '/' ? path.join(baseDir, 'public', 'index.html') : path.join(baseDir, reqPath);
+    const filePath = reqPa
 
     if (!filePath.startsWith(baseDir)) {
       res.statusCode = 403;
