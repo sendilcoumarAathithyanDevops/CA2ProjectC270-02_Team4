@@ -2,12 +2,12 @@ module.exports = {
   env: {
     node: true,
     es2021: true,
-    browser: true
+    browser: true,
   },
   extends: 'airbnb-base',
   parserOptions: {
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
   rules: {
     'no-console': 'warn',
@@ -16,6 +16,14 @@ module.exports = {
     'func-names': 'off',
     'object-shorthand': 'off',
     'no-undef': 'warn',
-    'prefer-arrow-callback': 'warn'
-  }
+    'prefer-arrow-callback': 'warn',
+  },
+  overrides: [
+    {
+      files: ['tests/**/*.js'],
+      env: {
+        jest: true,
+      },
+    },
+  ],
 };

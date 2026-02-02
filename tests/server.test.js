@@ -1,7 +1,8 @@
 describe('Server Tests', () => {
   test('Server module should be importable', () => {
     expect(() => {
-      require('../src/server/server.js');
+      // eslint-disable-next-line global-require
+      require('../src/server/server');
     }).not.toThrow();
   });
 
@@ -11,9 +12,9 @@ describe('Server Tests', () => {
       '.js': 'application/javascript',
       '.css': 'text/css',
       '.png': 'image/png',
-      '.json': 'application/json'
+      '.json': 'application/json',
     };
-    
+
     Object.entries(mimeTypes).forEach(([ext, type]) => {
       expect(type).toBeDefined();
       expect(typeof type).toBe('string');

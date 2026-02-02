@@ -30,7 +30,7 @@ describe('Game Logic Tests', () => {
   });
 
   test('Physics constants should be defined', () => {
-    const PI = Math.PI;
+    const { PI } = Math;
     expect(PI).toBeCloseTo(3.14159, 4);
     expect(PI / 2).toBeCloseTo(1.5708, 3);
   });
