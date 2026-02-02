@@ -1,9 +1,20 @@
 describe('Server Tests', () => {
+  let server;
+
+  beforeAll(() => {
+    server = require('../src/server/server');
+  });
+
+  afterAll((done) => {
+    if (server && server.close) {
+      server.close(done);
+    } else {
+      done();
+    }
+  });
+
   test('Server module should be importable', () => {
-    expect(() => {
-      // eslint-disable-next-line global-require
-      require('../src/server/server');
-    }).not.toThrow();
+    expect(server).toBeDefined();
   });
 
   test('MIME types should be defined for common file types', () => {
