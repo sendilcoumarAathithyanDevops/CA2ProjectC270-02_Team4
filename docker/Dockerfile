@@ -21,3 +21,6 @@ ENV NODE_ENV=production
 
 # Start the application (server.js is now in src/server/)
 CMD ["node", "src/server/server.js"]
+
+
+#done by hong le
