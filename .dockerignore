@@ -8,4 +8,5 @@ npm-debug.log
 .idea
 .vscode
 *.log
+tests
 #done by hongle
